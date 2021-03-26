@@ -1,0 +1,26 @@
+# build
+twine
+
+# document
+    # sphinx
+    # sphinx-rtd-theme
+
+# experiment
+jupyter
+
+# format
+black
+
+# lint
+bandit
+flake8
+flake8-bugbear
+mypy
+pylint
+rstcheck
+
+# refactor
+    # rope
+
+# test
+pytest
