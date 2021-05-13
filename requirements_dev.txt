@@ -1,0 +1,19 @@
+# this project
+-e .
+
+# build
+twine~=3.4
+
+# experiment
+jupyter~=1.0
+
+# format
+black==21.5b0  # doesn't follow semver
+
+# lint
+-r requirements_lint.txt
+flake8-codes~=0.1  # flake8 error code introspection
+
+# test
+pytest~=6.2
+pytest-cov~=2.11

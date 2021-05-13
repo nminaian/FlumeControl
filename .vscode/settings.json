@@ -1,0 +1,79 @@
+{
+  // * -------------------------------------------------------------------------- * //
+  // * MAIN * //
+
+  //* python
+  "python.pythonPath": ".venv\\Scripts\\python.exe",
+  "python.languageServer": "Pylance",
+  "python.analysis.autoSearchPaths": false,
+
+  //* workflows
+  "github-actions.workflows.pinned.workflows": [".github/workflows/main.yml"],
+
+  //* pytest
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+
+  //* markdownlint
+  "markdownlint.config": {
+    "first-line-heading": false
+  },
+
+  //* flake8
+  "python.linting.flake8Args": ["--config", ".flake8"],
+
+  // * -------------------------------------------------------------------------- * //
+  // * ADDITIONAL * //
+
+  //! Line-width related options
+
+  //* Soft wrap settings
+
+  //? Set wrapping column
+  "editor.wordWrapColumn": 88,
+  "editor.rulers": [88],
+
+  //? Soft wrap in *.md, *.jsonc (like settings.json), and *.rst
+  "[markdown]": {
+    //* Roughly matches the width of GitHub Markdown
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 124,
+    "editor.rulers": [124]
+  },
+  "[jsonc]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[plaintext]": {
+    "editor.wordWrap": "wordWrapColumn"
+  },
+
+  //* Formatting configuration
+  "python.formatting.provider": "black",
+  "rewrap.wrappingColumn": 88,
+  "rewrap.wholeComment": false,
+
+  //! Built-in
+
+  //* Format on save. Adjust CTRL+[SHIFT/ALT]+S in "keybindings.json" as well
+  "editor.formatOnSave": true,
+
+  //* Enforce whitespace and newlines.
+  //? Automatically enforce whitespace conventions.
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+
+  //* Periodically fetch changes to tracked repo. Don't confirm on push/pull.
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+  //! Linting
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+
+  //* Linting args
+  "python.sortImports.args": ["--profile", "black"]
+}
