@@ -20,7 +20,7 @@ setup(
     install_requires=[
         "fire~=0.4",
         "LabJackPython~=2.0",
-        "PyQt5~=5.15.4",
+        "PyQt5~=5.15",
         "pyqtgraph~=0.12",
         "python_vfd @ git+https://github.com/blakeNaccarato/python-vfd.git",
         "simple-pid~=1.0",
