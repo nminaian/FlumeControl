@@ -11,7 +11,7 @@ class VFD:
     def __init__(self):
         pass
 
-    def write(self, value):
+    def write(self, value: float):
         """Write a value to the VFD."""
         pass
 
@@ -48,4 +48,5 @@ class Controller:
 
         control_value = self.pid(self.feedback_value)
         print(f"{self.feedback_value} {control_value}")
-        self.vfd.write(control_value)
+        if control_value is not None:
+            self.vfd.write(control_value)

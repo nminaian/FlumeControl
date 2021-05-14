@@ -14,7 +14,7 @@ HISTORY_LENGTH = 600
 class Result:
     name: str
     unit: str
-    history: Deque
+    history: Deque[float]
 
 
 class Plotter:
@@ -31,7 +31,7 @@ class Plotter:
     ):
         self.all_results: List[Result] = []
         self.all_curves: List[pyqtgraph.PlotCurveItem] = []
-        self.all_histories: List[Deque] = []
+        self.all_histories: List[Deque[float]] = []
         self.time: List[int] = []
         for i in range(0, HISTORY_LENGTH):
             self.time.append(-i * DELAY)
@@ -41,16 +41,11 @@ class Plotter:
     def add(self, title: str, results: List[Result], row: int, col: int):
         """Plot results to a new pane in the plot window.
 
-        Parameters
-        ----------
-        title: str
-            The title of an additional plot.
-        results: List[Result]
-            The results to plot.
-        row: int = 0
-            The window row to place an additional plot.
-        col: int = 0
-            The window column to place an additional plot.
+        Attributes
+            title: The title of an additional plot.
+            results: The results to plot.
+            row: The window row to place an additional plot.
+            col: The window column to place an additional plot.
         """
 
         i = 0
