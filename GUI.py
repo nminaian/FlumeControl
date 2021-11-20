@@ -21,10 +21,13 @@ color = "b"
 # k = black
 # w = white
 # TODO make this color variable into a dictionary that is cycled through when the new line same plot event is called
+bufferSize = 10000
+
 
 layout = [
     [sg.Text("Some text on row 1")],
     [
+        sg.T("", size=(4, 1), key="-left-"),
         sg.Slider(
             (0, 100),
             key="-slider-",
@@ -34,7 +37,6 @@ layout = [
             enable_events=True,
             disable_number_display=True,
         ),
-        sg.T("", size=(4, 1)),
     ],
     # [sg.Text("Enter something on row 2"), sg.InputText()],
     [sg.Graph((100, 100), (0, 0), (100, 100), background_color="white")],
@@ -47,13 +49,10 @@ layout = [
     ],
 ]
 window = sg.Window("Flume Control", layout)
-print("test1")
+
+
 while True:  # Event Loop
-    event, values = window.read()
-    print("test2")
-    data.append(values["-slider-"])
-    plt.plot(data, color)
-    plt.show()
+    event, values = window.read(timeout=20)
     if event == sg.WIN_CLOSED or event == "Close":
         break
     elif event == "Clear":
@@ -73,4 +72,8 @@ while True:  # Event Loop
         print("values= ", values)
         plt.plot(data, color)
         plt.show(block=False)
+    window["-left-"].update(int(values["-slider-"]))
+    data.append(int(values["-slider-"]))
+    plt.plot(data, color)
+    plt.show()
 window.close()
