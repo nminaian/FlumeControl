@@ -2,7 +2,7 @@
 -e .
 
 # build
-twine~=3.4
+twine~=3.7
 
 # experiment
 jupyter~=1.0
