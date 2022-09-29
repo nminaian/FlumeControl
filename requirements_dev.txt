@@ -16,4 +16,4 @@ flake8-codes~=0.2  # flake8 error code introspection
 
 # test
 pytest~=7.1
-pytest-cov~=3.0
+pytest-cov~=4.0
