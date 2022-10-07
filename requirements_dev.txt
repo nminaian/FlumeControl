@@ -8,7 +8,7 @@ twine~=4.0
 jupyter~=1.0
 
 # format
-black==22.8.0  # doesn't follow semver
+black==22.10.0  # doesn't follow semver
 
 # lint
 -r requirements_lint.txt
