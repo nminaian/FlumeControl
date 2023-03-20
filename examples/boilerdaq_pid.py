@@ -1,8 +1,8 @@
 """Inspired by the PID implementation in `boilerdaq`, with placeholders."""
 
-from typing import Tuple
+# sourcery skip: upper-camel-case-classes
 
-from simple_pid import PID
+from simple_pid import PID  # type: ignore
 
 
 class VFD:
@@ -13,7 +13,6 @@ class VFD:
 
     def write(self, value: float):
         """Write a value to the VFD."""
-        pass
 
 
 class Sensor:
@@ -30,13 +29,13 @@ class Sensor:
 class Controller:
     """A PID controller."""
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self,
         vfd: VFD,
         feedback_sensor: Sensor,
         setpoint: float,
-        gains: Tuple[float, float, float],
-        output_limits: Tuple[float, float],
+        gains: tuple[float, float, float],
+        output_limits: tuple[float, float],
     ):
         self.vfd = vfd
         self.feedback_sensor = feedback_sensor

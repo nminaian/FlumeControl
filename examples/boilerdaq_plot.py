@@ -1,7 +1,7 @@
 """Inspired by the plotting implementation in `boilerdaq`, with placeholders."""
 
 from dataclasses import dataclass
-from typing import Deque, List
+from typing import Deque
 
 import pyqtgraph
 
@@ -20,35 +20,33 @@ class Result:
 class Plotter:
     """A plotter."""
 
-    window = pyqtgraph.GraphicsWindow()
+    window = pyqtgraph.GraphicsWindow()  # type: ignore
 
     def __init__(
         self,
         title: str,
-        results: List[Result],
+        results: list[Result],
         row: int = 0,
         col: int = 0,
     ):
-        self.all_results: List[Result] = []
-        self.all_curves: List[pyqtgraph.PlotCurveItem] = []
-        self.all_histories: List[Deque[float]] = []
-        self.time: List[int] = []
-        for i in range(0, HISTORY_LENGTH):
-            self.time.append(-i * DELAY)
+        self.all_results: list[Result] = []
+        self.all_curves: list[pyqtgraph.PlotCurveItem] = []
+        self.all_histories: list[Deque[float]] = []
+        self.time: list[int] = [-i * DELAY for i in range(HISTORY_LENGTH)]
         self.time.reverse()
         self.add(title, results, row, col)
 
-    def add(self, title: str, results: List[Result], row: int, col: int):
+    def add(self, title: str, results: list[Result], row: int, col: int):
         """Plot results to a new pane in the plot window.
 
         Attributes
+        ----------
             title: The title of an additional plot.
             results: The results to plot.
             row: The window row to place an additional plot.
             col: The window column to place an additional plot.
         """
 
-        i = 0
         plot = self.window.addPlot(row, col)
         plot.addLegend()
         plot.setLabel("left", units=results[0].unit)
@@ -58,12 +56,11 @@ class Plotter:
         histories = [result.history for result in results]
         self.all_histories.extend(histories)
         names = [result.name for result in results]
-        for history, name in zip(histories, names):
+        for i, (history, name) in enumerate(zip(histories, names, strict=True)):
             curve = plot.plot(self.time, history, pen=pyqtgraph.intColor(i), name=name)
             self.all_curves.append(curve)
-            i += 1
 
     def update(self):
         """Update plots."""
-        for curve, history in zip(self.all_curves, self.all_histories):
+        for curve, history in zip(self.all_curves, self.all_histories, strict=True):
             curve.setData(self.time, history)

@@ -35,7 +35,7 @@ ignore =
     F841,
 
 per-file-ignores =
-    
+
     tests/*:
         ; We indicate custom fixtures w/ ALL_CAPS to distinguish from other args
         ; function name should be lowercase
