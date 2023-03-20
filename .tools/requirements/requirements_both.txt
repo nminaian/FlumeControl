@@ -4,9 +4,22 @@
 # * -------------------------------------------------------------------------------- * #
 # * Changes below may be lost in significant template updates.
 
-[submodule "template"]
-	path = template
-	url = https://github.com/blakeNaccarato/copier-python.git
-[submodule "typings"]
-	path = typings
-	url = https://github.com/blakeNaccarato/pylance-stubs-unofficial.git
+# Bump
+copier==7.0.1
+toml==0.10.2
+
+# Build
+flit==3.8.0
+
+# Type checking
+pyright==1.1.296
+
+# Lint
+ruff==0.0.254
+
+# Test
+pytest==7.2.2
+pytest-cov==4.0.0
+
+# Document
+-r requirements_docs.txt

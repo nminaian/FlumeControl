@@ -1,9 +1,32 @@
 {
   "recommendations": [
-    "cschleiden.vscode-github-actions",
-    "yzhang.markdown-all-in-one",
+    // * -------------------------------------------------------------------------- * //
+    // * Changes below should persist in significant template updates.
+
+    // * -------------------------------------------------------------------------- * //
+    // * Changes below may be lost in significant template updates.
+
+    "aaron-bond.better-comments",
     "bierner.markdown-preview-github-styles",
+    "blackmist.linkcheckmd",
+    "charliermarsh.ruff",
+    "cschleiden.vscode-github-actions",
     "davidanson.vscode-markdownlint",
-    "esbenp.prettier-vscode"
+    "donjayamanne.githistory",
+    "dotjoshjohnson.xml",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "executablebookproject.myst-highlight",
+    "github.codespaces",
+    "github.vscode-pull-request-github",
+    "ms-python.black-formatter",
+    "redhat.vscode-yaml",
+    "reverbc.vscode-pytest",
+    "ryanluker.vscode-coverage-gutters",
+    "sourcery.sourcery",
+    "stkb.rewrap",
+    "tamasfe.even-better-toml",
+    "tyriar.shell-launcher",
+    "yzhang.markdown-all-in-one"
   ]
 }

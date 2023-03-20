@@ -1,14 +1,24 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    // * -------------------------------------------------------------------------- * //
+    // * Changes below should persist in significant template updates.
+
+    // * -------------------------------------------------------------------------- * //
+    // * Changes below may be lost in significant template updates.
     {
-      "name": "Python: Current File",
+      "name": "Python: Current file",
       "type": "python",
       "request": "launch",
       "program": "${file}",
+      "console": "internalConsole"
+    },
+    {
+      "name": "Python: Current file, not just my code",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "justMyCode": false,
       "console": "internalConsole"
     }
   ]

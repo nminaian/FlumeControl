@@ -1,13 +1,13 @@
 [build-system]
-requires = ["flit_core >=3.3,<4"]
+requires = [ "flit_core >=3.3,<4",]
 build-backend = "flit_core.buildapi"
 
 [project]
 name = "flumecontrol"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [ "fire~=0.4", "LabJackPython~=2.0", "PyQt5~=5.15", "pyqtgraph~=0.12", "simple-pid~=1.0", "uModbus~=1.0",]
 readme = "README.md"
-dynamic = ["version", "description"]
+dynamic = [ "version", "description",]
 [[project.authors]]
 name = "Nazanin Minaian, Blake Naccarato"
 email = "+flumecontrol@gmail.com"
@@ -15,4 +15,20 @@ email = "+flumecontrol@gmail.com"
 [project.urls]
 Home = "https://github.com/blakeNaccarato/flumecontrol"
 
-[project.optional-dependencies]
+[tool.ruff]
+fix = true
+select = [ "ALL",]
+src = [ "src", "tests",]
+target-version = "py311"
+extend-exclude = [ "template", "typings", ".github", ".tools", ".venv",]
+ignore = [ "ANN", "ARG005", "C408", "COM", "D10", "D20", "D213", "DTZ", "E501", "EM", "ERA", "FBT", "INP001", "ISC", "PD013", "PD901", "PGH003", "PLW2901", "RET", "TCH", "TRY003", "F821", "S101", "T201",]
+unfixable = [ "F601",]
+
+[tool.ruff.per-file-ignores]
+"tests/**" = [ "ARG001", "S101",]
+
+[tool.ruff.flake8-bugbear]
+extend-immutable-calls = [ "typer.Argument", "typer.Option",]
+
+[tool.ruff.pep8-naming]
+classmethod-decorators = [ "pydantic.validator",]

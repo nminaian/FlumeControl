@@ -1,78 +1,200 @@
 {
-  // * -------------------------------------------------------------------------- * //
-  // * MAIN * //
+  // * ---------------------------------------------------------------------------- * //
+  // * Changes below should persist in significant template updates.
 
-  //* python
+  // * ---------------------------------------------------------------------------- * //
+  // * Changes below may be lost in significant template updates.
+
+  // Environment variables don't load properly otherwise
+  // See: https://github.com/microsoft/vscode-python/issues/944#issuecomment-808516207
+  "terminal.integrated.defaultProfile.linux": "pwsh",
+
+  //! Pylance
+  //* Pylance settings aren't very discoverable.
+  //* https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
   "python.languageServer": "Pylance",
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.indexing": true,
+  //? Auto imports
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.extraCommitChars": true,
+  //? Inlay hints
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  //? See "include" and "extrapaths" in pyrightconfig.json
   "python.analysis.autoSearchPaths": false,
+  //? See "useLibraryCodeForTypes" in pyrightconfig.json
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.completeFunctionParens": false, // Buggy for now
 
-  //* workflows
-  "github-actions.workflows.pinned.workflows": [".github/workflows/main.yml"],
-
+  //! Lint, test, format
   //* pytest
-  "python.testing.pytestArgs": ["tests"],
   "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
-
   //* markdownlint
   "markdownlint.config": {
     "first-line-heading": false
   },
+  //* black
+  "black-formatter.importStrategy": "fromEnvironment",
+  "black-formatter.args": [],
+  //* ruff
+  "ruff.importStrategy": "fromEnvironment",
 
-  //* flake8
-  "python.linting.flake8Args": ["--config", ".flake8"],
+  //! GitHub Actions
+  "github-actions.workflows.pinned.workflows": [".github/workflows/main.yml"],
 
-  // * -------------------------------------------------------------------------- * //
-  // * ADDITIONAL * //
+  //! Shell Launcher
+  "shellLauncher.shells.windows": [
+    {
+      //* Launches IPython in the virtual environment. Lets you try things out in without having to fire up an entire Jupyter notebook.
+      //*
+      //* Use alongside the following keybind in your "keybindings.json".
+      //*
+      //? {
+      //?   "key": "ctrl+alt+1",
+      //?   "command": "shellLauncher.launch"
+      //? },
+      "label": "IPython (.venv)",
+      "shell": "pwsh.exe",
+      "args": ["-NoExit", "-Command", "python", "-m", "IPython"]
+    }
+  ],
 
-  //! Line-width related options
+  //! Files
+  //* Experimental file nesting
+  "explorer.sortOrder": "foldersNestsFiles",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+    ".nest_tools_config": "coverage.xml, setup.ps1, update.ps1, *.code-workspace, *.prof, .copier-answers.yml, .coverage, .coveragerc, .env, .gitattributes, .gitmodules, .markdownlint.yaml, .pre-commit-config.yaml, .pytest_cache, .sourcery.yaml, codecov.yml, pyrightconfig.json, pytest.ini, pythonrc.py, renovate.json",
+    ".nest_md": "*.md, LICENSE"
+  },
+  //* File associations
+  "files.associations": {
+    ".coveragerc": "ini",
+    ".env": "dotenv",
+    ".pylintrc": "ini",
+    "pyrightconfig.json": "jsonc",
+    "*requirements*.txt": "pip-requirements",
+    ".nest_md": "markdown",
+    ".nest_tools_config": "plaintext",
+    ".sourcery.yaml": "yaml"
+  },
+  //* File icon associations
+  "workbench.iconTheme": "vscode-icons",
+  "vsicons.presets.hideExplorerArrows": true,
+  "vsicons.dontShowNewVersionMessage": false,
+  "vsicons.associations.files": [
+    { "icon": "ini", "extensions": ["nest_tools_config"], "format": "svg" },
+    { "icon": "markdown", "extensions": ["nest_md"], "format": "svg" }
+  ],
 
-  //* Soft wrap settings
+  //! Built-in
+  //* Allow auto-running tasks
+  "task.allowAutomaticTasks": "on",
+  //* Enable native bracket pair colorization
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  //* Editor format on save and more. Can run "File: Save without formatting" to skip.
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  //* Enforce whitespace and newlines.
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  //* Periodically fetch changes to tracked repo. Don't confirm on push/pull.
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  //* Markdown editor moves jarringly when this is "true"
+  "markdown.preview.scrollEditorWithPreview": false,
+  //* Exclude
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "typings": true,
+    "template": true
+  },
 
-  //? Set wrapping column
+  //! Line-width
+  //* Formatting
+  "rewrap.wrappingColumn": 88,
+  "rewrap.wholeComment": false,
+  //* Don't validate the body of a commit. Assume people can wrap it in their IDE.
+  "git.inputValidationSubjectLength": 88,
+  "git.inputValidationLength": 1e100,
+  //* Default wrapping
   "editor.wordWrapColumn": 88,
   "editor.rulers": [88],
 
-  //? Soft wrap in *.md, *.jsonc (like settings.json), and *.rst
-  "[markdown]": {
-    //* Roughly matches the width of GitHub Markdown
+  //! Filetype specifics
+  //* .ENV
+  "[dotenv]": {
     "editor.wordWrap": "wordWrapColumn",
+    "rewrap.autoWrap.enabled": false
+  },
+  //* IPYNB
+  "[ipynb]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  //* MD
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.wordWrap": "wordWrapColumn",
+    //? Roughly matches the width of GitHub Markdown
     "editor.wordWrapColumn": 124,
-    "editor.rulers": [124]
+    "editor.rulers": [124],
+    "rewrap.autoWrap.enabled": false
+  },
+  //* JSON
+  "[json]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.wordWrap": "wordWrapColumn",
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  //* PYTHON
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  //* TXT
   "[plaintext]": {
     "editor.wordWrap": "wordWrapColumn"
   },
+  //* TOML
+  "evenBetterToml.formatter.columnWidth": 88,
+  "[toml]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  //* TSV
+  "[tsv]": {
+    //? Indent with tabs
+    "editor.insertSpaces": false
+  },
+  //* YAML
+  "yaml.format.printWidth": 88,
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "wordWrapColumn"
+  },
 
-  //* Formatting configuration
-  "python.formatting.provider": "black",
-  "rewrap.wrappingColumn": 88,
-  "rewrap.wholeComment": false,
-
-  //! Built-in
-
-  //* Format on save. Adjust CTRL+[SHIFT/ALT]+S in "keybindings.json" as well
-  "editor.formatOnSave": true,
-
-  //* Enforce whitespace and newlines.
-  //? Automatically enforce whitespace conventions.
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true,
-
-  //* Periodically fetch changes to tracked repo. Don't confirm on push/pull.
-  "git.autofetch": true,
-  "git.confirmSync": false,
-
-  //! Linting
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-
-  //* Linting args
-  "python.sortImports.args": ["--profile", "black"]
+  //! Extension: Jupyter Notebooks
+  "jupyter.notebookFileRoot": "${workspaceFolder}"
 }

@@ -1,22 +1,37 @@
-name: main
+name: "main"
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: ["push", "workflow_dispatch"]
 
 jobs:
-  flake8:
-    runs-on: ubuntu-20.04
+  # * ------------------------------------------------------------------------------ * #
+  # * Changes below may be lost in significant template updates.
+
+  pyright:
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: "blakeNaccarato/copier-python-workflow-setup@v0.0.12"
         with:
-          python-version: 3.8
-      - run: |
-          pip install -U pip setuptools wheel
-          pip install -r requirements_lint.txt
-          pip install .
-      - run: flake8
+          python-version: "3.11"
+      - run: "pyright"
+  pytest-cov:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "blakeNaccarato/copier-python-workflow-setup@v0.0.12"
+        with:
+          python-version: "3.11"
+      - run: "pytest --cov"
+      - uses: "codecov/codecov-action@v3.1.1"
+  bump_project:
+    needs: ["pyright", "pytest-cov"]
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "blakeNaccarato/copier-python-workflow-setup@v0.0.12"
+        with:
+          python-version: "3.11"
+          install-project: false
+      - uses: "stefanzweifel/git-auto-commit-action@v4"
+        with:
+          commit_message: "Bump project template and compose `pyproject.toml`."
+
+  # * ------------------------------------------------------------------------------ * #
+  # * Changes below should persist in significant template updates.
