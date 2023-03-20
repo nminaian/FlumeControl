@@ -1,0 +1,18 @@
+[build-system]
+requires = ["flit_core >=3.3,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "flumecontrol"
+requires-python = ">=3.11"
+dependencies = []
+readme = "README.md"
+dynamic = ["version", "description"]
+[[project.authors]]
+name = "Nazanin Minaian, Blake Naccarato"
+email = "+flumecontrol@gmail.com"
+
+[project.urls]
+Home = "https://github.com/blakeNaccarato/flumecontrol"
+
+[project.optional-dependencies]

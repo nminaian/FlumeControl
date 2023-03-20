@@ -1,2 +1,5 @@
-def test_test():
-    pass
+import flumecontrol
+
+
+def test():
+    flumecontrol.__version__

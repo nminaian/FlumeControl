@@ -1,0 +1,8 @@
+# List project dependencies here. A workflow ports them to `pyproject.toml`. This is needed because Dependabot does not currently support `flit`-flavored `pyproject.toml`.
+fire~=0.4
+LabJackPython~=2.0
+PyQt5~=5.15
+pyqtgraph~=0.12
+simple-pid~=1.0
+uModbus~=1.0
+python_vfd @ git+https://github.com/blakeNaccarato/python-vfd.git
