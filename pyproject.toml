@@ -13,7 +13,7 @@ name = "Nazanin Minaian, Blake Naccarato"
 email = "+flumecontrol@gmail.com"
 
 [project.urls]
-Home = "https://github.com/blakeNaccarato/flumecontrol"
+Home = "https://github.com/nminaian/flumecontrol"
 
 [tool.ruff]
 fix = true
