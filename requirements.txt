@@ -1,5 +1,5 @@
 # List project dependencies here. A workflow ports them to `pyproject.toml`. This is needed because Dependabot does not currently support `flit`-flavored `pyproject.toml`.
-fire~=0.4
+fire~=0.5
 LabJackPython~=2.0
 PyQt5~=5.15
 pyqtgraph~=0.12
