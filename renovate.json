@@ -8,6 +8,7 @@
     ":enablePreCommit",
     ":preserveSemverRanges"
   ],
+  "dependencyDashboardApproval": true,
   "schedule": ["on the 8th day of the month"],
   "git-submodules": { "enabled": true },
   "enabledManagers": [
