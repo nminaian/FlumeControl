@@ -2,6 +2,6 @@
 fire~=0.4
 LabJackPython~=2.0
 PyQt5~=5.15
-pyqtgraph~=0.12
+pyqtgraph~=0.13
 simple-pid~=1.0
 uModbus~=1.0
